@@ -14,9 +14,8 @@
       --input-bg: #121212;
       --text-color: #eaeaea;
       --muted-color: #bdbdbd;
-      --font-primary: 'Arial', sans-serif; /* замени на свой шрифт, если нужен */
+      --font-primary: 'Arial', sans-serif;
     }
-
     html, body {
       margin: 0;
       padding: 0;
@@ -28,24 +27,20 @@
       font-family: var(--font-primary);
       font-size: 16px;
     }
-
     @keyframes bgAnim {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     .container {
       max-width: 1000px;
       margin: 30px auto;
       padding: 20px;
     }
-
     header {
       text-align: center;
       margin-bottom: 24px;
     }
-
     .logo {
       display: inline-block;
       width: 64px;
@@ -57,23 +52,19 @@
       font-size: 24px;
       line-height: 64px;
     }
-
     h1 {
       margin: 12px 0 4px;
       font-size: 24px;
     }
-
     .lead {
       color: var(--muted-color);
     }
-
     .card {
       background-color: var(--card-bg);
       border-radius: 14px;
       padding: 24px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
     }
-
     .field {
       margin-bottom: 16px;
     }
@@ -100,7 +91,6 @@
       min-height: 80px;
       resize: vertical;
     }
-
     .section-title {
       margin: 24px 0 12px;
       text-align: center;
@@ -108,7 +98,6 @@
       font-size: 20px;
       font-weight: bold;
     }
-
     .photos-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -121,7 +110,7 @@
       position: relative;
       cursor: default;
     }
-    .photo-card .photo-thumb {
+    .photo-thumb {
       width: 100%;
       aspect-ratio: 1/1;
       background-size: cover;
@@ -133,7 +122,6 @@
       font-size: 14px;
       text-align: center;
     }
-
     .shows-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -169,7 +157,6 @@
       align-items: center;
       gap: 8px;
     }
-
     .btn {
       padding: 10px 16px;
       border: none;
@@ -184,7 +171,6 @@
       border: 1px solid rgba(255,255,255,0.3);
       color: var(--muted-color);
     }
-
     .links a {
       display: inline-block;
       color: var(--accent2);
@@ -192,7 +178,6 @@
       font-weight: bold;
       margin: 8px;
     }
-
     .submit-row {
       margin-top: 20px;
       display: flex;
@@ -215,7 +200,6 @@
     </header>
 
     <div class="card" id="mainCard">
-
       <div class="field">
         <label>Телефон для бронирования</label>
         <input id="phone" type="tel" placeholder="+7 (___) ___-__-__">
@@ -231,7 +215,7 @@
 
       <div class="section-title">Заказ у наших партнёров</div>
       <div id="partnerOrderContainer" class="photos-grid">
-        <!-- Здесь ты вставишь изображения / предложения партнёров -->
+        <!-- карточки партнёров будут здесь -->
       </div>
 
       <div style="text-align: center; margin-top: 16px;">
@@ -254,17 +238,16 @@
         <button class="btn" id="sendBtn">Отправить</button>
         <div class="result" id="resultMsg"></div>
       </div>
-
     </div>
   </div>
 
   <script>
-    // ======= ДАННЫЕ =======
+    // ===== ДАННЫЕ =====
     const partnerOrders = [
       {
         id: 'order1',
         title: 'Пицца “Маргарита”',
-        media: 'https://i.imgur.com/пример.jpg',
+        media: 'https://i.imgur.com/пример1.jpg',
         link: 'https://qsmenu.ru/vr-portal'
       },
       {
@@ -273,7 +256,7 @@
         media: 'https://i.imgur.com/пример2.jpg',
         link: 'https://disk.yandex.ru/…'
       }
-      // добавь сколько нужно элементов
+      // добавь сколько нужно
     ];
 
     const balloons = [
@@ -289,7 +272,7 @@
         price: '5000 ₽',
         media: 'https://i.imgur.com/пример_balloon2.jpg'
       }
-      // и др.
+      // и другие варианты
     ];
 
     const shows = [
@@ -308,7 +291,7 @@
       // и др.
     ];
 
-    // ======= ФУНКЦИИ РЕНДЕРА =======
+    // ===== ФУНКЦИИ РЕНДЕРА =====
     function renderPartnerOrders() {
       const container = document.getElementById('partnerOrderContainer');
       partnerOrders.forEach(o => {
@@ -335,7 +318,7 @@
           <div class="photo-caption">
             <div style="font-weight: bold; margin-bottom: 4px;">${b.title}</div>
             <div style="color: var(--accent1); margin-bottom: 6px;">${b.price}</div>
-            <label style="font-size: 14px; color: var(--muted-color);">
+            <label>
               <input type="radio" name="selectedBalloon" value="${b.id}">
               Выбрать
             </label>
@@ -368,12 +351,12 @@
       });
     }
 
-    // запускаем рендеры
+    // Запускаем
     renderPartnerOrders();
     renderBalloons();
     renderShows();
 
-    // ======= Простая маска для телефона (RU) =======
+    // ===== Маска телефона (RU) =====
     (function(){
       const phoneEl = document.getElementById('phone');
       phoneEl.addEventListener('input', () => {
@@ -395,7 +378,7 @@
       });
     })();
 
-    // ======= Отправка данных (пример) =======
+    // ===== Отправка заявки =====
     document.getElementById('sendBtn').addEventListener('click', e => {
       e.preventDefault();
       const phone = document.getElementById('phone').value.trim();
@@ -411,18 +394,16 @@
         document.getElementById('resultMsg').textContent = 'Укажите имя именинника';
         return;
       }
-
-      const selectedShow = document.querySelector('input[name="selectedShow"]:checked');
-      const showId = selectedShow ? selectedShow.value : '';
-      const selectedBalloon = document.querySelector('input[name="selectedBalloon"]:checked');
-      const balloonId = selectedBalloon ? selectedBalloon.value : '';
+      const selShow = document.querySelector('input[name="selectedShow"]:checked');
+      const showId = selShow ? selShow.value : '';
+      const selBalloon = document.querySelector('input[name="selectedBalloon"]:checked');
+      const balloonId = selBalloon ? selBalloon.value : '';
 
       const payload = {
         phone, name, guests, showId, balloonId, wishes
       };
 
-      // тут размести свой URL для приёма данных
-      const scriptUrl = 'https://твoй-сценарий-url';
+      const scriptUrl = 'https://твой‑url‑для‑обработки'; // замени
 
       fetch(scriptUrl, {
         method: 'POST',
