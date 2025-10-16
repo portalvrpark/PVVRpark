@@ -560,34 +560,6 @@ const shows = [
   }
 ];
 
-<div class="section-title">Выберите заказ у наших партнёров</div>
-  <div id="meatContainer" class="photos-grid" style="margin-top: 12px;"></div>
-
-  <textarea id="wishes" placeholder="Например: Пицца Маргарита 32см - 1, картошка фри 100грамм 5 шт..."></textarea>
-
-  <script>
-    const meat = [
-      'https://i.imgur.com/2hIFzdQ.jpeg',
-      'https://i.imgur.com/3lyIYOz.jpeg',
-      'https://i.imgur.com/qm4Boeu.jpeg',
-      'https://i.imgur.com/DwUJf1m.jpeg',
-      'https://i.imgur.com/DTIDdmz.jpeg',
-      'https://i.imgur.com/uL8jw6g.jpeg',
-      'https://i.imgur.com/KE81Y85.jpeg',
-      'https://i.imgur.com/X321G1v.jpeg'
-    ];
-
-    const meatContainer = document.getElementById('meatContainer');
-
-    meat.forEach((src) => {
-      const card = document.createElement('div');
-      card.className = 'photo-card';
-      card.innerHTML = `<div class="photo-thumb" style="background-image:url('${src}')"></div>`;
-      meatContainer.appendChild(card);
-    });
-  </script>
-
-  
 /* =======================
 ====== RENDERING ======
 ======================= */
